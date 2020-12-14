@@ -15,6 +15,9 @@ namespace Uge51_miniprojekt
         public Form1()
         {
             InitializeComponent();
+            SKPspecialMere.Visible = false;
+            OmadsfavMere.Visible = false;
+            ViktorsfavMere.Visible = false;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -50,6 +53,41 @@ namespace Uge51_miniprojekt
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        //Ændre Visiblily på "mere" info boxes omkring Pizzaerne efter click
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OmadsfavMere.Visible = false;
+            ViktorsfavMere.Visible = false;
+            SKPspecialMere.Visible = true;
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OmadsfavMere_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Ændre Visiblily på "mere" info boxes omkring Pizzaerne efter click
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            SKPspecialMere.Visible = false;
+            ViktorsfavMere.Visible = false;
+            OmadsfavMere.Visible = true;
+
+        }
+
+        //Ændre Visiblily på "mere" info boxes omkring Pizzaerne efter click
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            OmadsfavMere.Visible = false;
+            SKPspecialMere.Visible = false;
+            ViktorsfavMere.Visible = true;
         }
     }
 }

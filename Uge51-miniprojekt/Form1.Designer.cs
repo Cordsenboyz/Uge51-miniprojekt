@@ -57,14 +57,19 @@ namespace Uge51_miniprojekt
             this.checkBox7 = new System.Windows.Forms.CheckBox();
             this.checkBox8 = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.Pizza1 = new System.Windows.Forms.TextBox();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
+            this.listView1 = new System.Windows.Forms.ListView();
+            this.TotalPriceLabel = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.KontaktOsBox = new System.Windows.Forms.GroupBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.KontaktOsBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -101,12 +106,14 @@ namespace Uge51_miniprojekt
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
             this.menuToolStripMenuItem.Text = "Menu";
+            this.menuToolStripMenuItem.Click += new System.EventHandler(this.menuToolStripMenuItem_Click);
             // 
             // kontaktOsToolStripMenuItem
             // 
             this.kontaktOsToolStripMenuItem.Name = "kontaktOsToolStripMenuItem";
             this.kontaktOsToolStripMenuItem.Size = new System.Drawing.Size(75, 20);
             this.kontaktOsToolStripMenuItem.Text = "Kontakt os";
+            this.kontaktOsToolStripMenuItem.Click += new System.EventHandler(this.kontaktOsToolStripMenuItem_Click);
             // 
             // checkBox1
             // 
@@ -139,6 +146,7 @@ namespace Uge51_miniprojekt
             this.checkBox2.TabIndex = 6;
             this.checkBox2.Text = "Fam. 120 kr.";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // label3
             // 
@@ -275,8 +283,8 @@ namespace Uge51_miniprojekt
             this.SKPspecialMere.Name = "SKPspecialMere";
             this.SKPspecialMere.Size = new System.Drawing.Size(127, 117);
             this.SKPspecialMere.TabIndex = 19;
-            this.SKPspecialMere.Text = "SKP Special Ingredienser\r\nBund: Hvedemel\r\nTomatsovs: \r\nSkinke:\r\nOst:\r\nPepperoni:\r" +
-    "\nKebab:\r\nDressing:\r\n\r\n";
+            this.SKPspecialMere.Text = "SKP Special Ingredienser\r\nBund: Hvedemel\r\nTomatsovs\r\nSkinke\r\nOst\r\nPepperoni\r\nKeba" +
+    "b\r\nDressing\r\n\r\n";
             this.SKPspecialMere.Click += new System.EventHandler(this.label8_Click);
             // 
             // OmadsfavMere
@@ -286,8 +294,8 @@ namespace Uge51_miniprojekt
             this.OmadsfavMere.Name = "OmadsfavMere";
             this.OmadsfavMere.Size = new System.Drawing.Size(138, 104);
             this.OmadsfavMere.TabIndex = 20;
-            this.OmadsfavMere.Text = "Omad\'s Favorit Ingredienser\r\nBund: Hvedemel\r\nTomatsovs: \r\nKebab:\r\nOst:\r\nKylling:\r" +
-    "\nSalat:\r\nDressing:\r\n";
+            this.OmadsfavMere.Text = "Omad\'s Favorit Ingredienser\r\nBund: Hvedemel\r\nTomatsovs:\r\nKebab\r\nOst\r\nKylling\r\nSal" +
+    "at\r\nDressing\r\n";
             this.OmadsfavMere.Click += new System.EventHandler(this.OmadsfavMere_Click);
             // 
             // ViktorsfavMere
@@ -297,8 +305,7 @@ namespace Uge51_miniprojekt
             this.ViktorsfavMere.Name = "ViktorsfavMere";
             this.ViktorsfavMere.Size = new System.Drawing.Size(137, 78);
             this.ViktorsfavMere.TabIndex = 21;
-            this.ViktorsfavMere.Text = "Viktor\'s Favorit Ingredienser\r\nBund: Hvedemel\r\nTomatsovs: \r\nSkinke:\r\nChili:\r\nSala" +
-    "t:";
+            this.ViktorsfavMere.Text = "Viktor\'s Favorit Ingredienser\r\nBund: Hvedemel\r\nTomatsovs\r\nSkinke\r\nChili\r\nSalat";
             // 
             // label8
             // 
@@ -332,9 +339,10 @@ namespace Uge51_miniprojekt
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.listView1);
+            this.groupBox1.Controls.Add(this.TotalPriceLabel);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.numericUpDown1);
-            this.groupBox1.Controls.Add(this.linkLabel4);
-            this.groupBox1.Controls.Add(this.Pizza1);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.button2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -346,15 +354,45 @@ namespace Uge51_miniprojekt
             this.groupBox1.Text = "Kurv";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
-            // button2
+            // listView1
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(72, 368);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(60, 23);
-            this.button2.TabIndex = 0;
-            this.button2.Text = "Bestil";
-            this.button2.UseVisualStyleBackColor = true;
+            this.listView1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.listView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listView1.HideSelection = false;
+            this.listView1.Location = new System.Drawing.Point(6, 88);
+            this.listView1.Name = "listView1";
+            this.listView1.Size = new System.Drawing.Size(154, 249);
+            this.listView1.TabIndex = 27;
+            this.listView1.UseCompatibleStateImageBehavior = false;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            // 
+            // TotalPriceLabel
+            // 
+            this.TotalPriceLabel.AutoSize = true;
+            this.TotalPriceLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TotalPriceLabel.Location = new System.Drawing.Point(74, 347);
+            this.TotalPriceLabel.Name = "TotalPriceLabel";
+            this.TotalPriceLabel.Size = new System.Drawing.Size(0, 16);
+            this.TotalPriceLabel.TabIndex = 26;
+            this.TotalPriceLabel.Click += new System.EventHandler(this.TotalPriceLabel_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(68, 340);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(0, 24);
+            this.label10.TabIndex = 26;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown1.Location = new System.Drawing.Point(163, 88);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(31, 22);
+            this.numericUpDown1.TabIndex = 26;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label9
             // 
@@ -366,38 +404,50 @@ namespace Uge51_miniprojekt
             this.label9.TabIndex = 26;
             this.label9.Text = "Dine Pizzaer";
             // 
-            // Pizza1
+            // button2
             // 
-            this.Pizza1.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.Pizza1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.Pizza1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Pizza1.Location = new System.Drawing.Point(10, 101);
-            this.Pizza1.Name = "Pizza1";
-            this.Pizza1.Size = new System.Drawing.Size(142, 15);
-            this.Pizza1.TabIndex = 26;
-            this.Pizza1.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Location = new System.Drawing.Point(72, 368);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(60, 23);
+            this.button2.TabIndex = 0;
+            this.button2.Text = "Bestil";
+            this.button2.UseVisualStyleBackColor = true;
             // 
-            // linkLabel4
+            // KontaktOsBox
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel4.LinkColor = System.Drawing.Color.Black;
-            this.linkLabel4.Location = new System.Drawing.Point(6, 119);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(37, 13);
-            this.linkLabel4.TabIndex = 26;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Ekstra";
-            this.linkLabel4.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel4_LinkClicked);
+            this.KontaktOsBox.Controls.Add(this.richTextBox1);
+            this.KontaktOsBox.Controls.Add(this.label11);
+            this.KontaktOsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.KontaktOsBox.Location = new System.Drawing.Point(1, 24);
+            this.KontaktOsBox.Name = "KontaktOsBox";
+            this.KontaktOsBox.Size = new System.Drawing.Size(799, 426);
+            this.KontaktOsBox.TabIndex = 26;
+            this.KontaktOsBox.TabStop = false;
+            this.KontaktOsBox.Text = "Kontakt Os";
+            this.KontaktOsBox.Visible = false;
             // 
-            // numericUpDown1
+            // richTextBox1
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(158, 98);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(31, 22);
-            this.numericUpDown1.TabIndex = 26;
-            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
+            this.richTextBox1.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.richTextBox1.Location = new System.Drawing.Point(323, 104);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(139, 277);
+            this.richTextBox1.TabIndex = 1;
+            this.richTextBox1.Text = "Telefon: 37 48 36 29\nE-mail: SKPPizza@taetusj.dk\n\n";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged_1);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(336, 75);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(110, 24);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "Kontakt Os";
             // 
             // Form1
             // 
@@ -429,6 +479,7 @@ namespace Uge51_miniprojekt
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.label1);
+            this.Controls.Add(this.KontaktOsBox);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Tae Tusj";
@@ -438,6 +489,8 @@ namespace Uge51_miniprojekt
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            this.KontaktOsBox.ResumeLayout(false);
+            this.KontaktOsBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -473,9 +526,13 @@ namespace Uge51_miniprojekt
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox Pizza1;
-        private System.Windows.Forms.LinkLabel linkLabel4;
         private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label TotalPriceLabel;
+        private System.Windows.Forms.GroupBox KontaktOsBox;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ListView listView1;
     }
 }
 

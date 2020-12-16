@@ -12,16 +12,24 @@ namespace Uge51_miniprojekt
 {
     public partial class Form1 : Form
     {
+        Decimal SKPSpecialALM = 65;
         public Form1()
         {
             InitializeComponent();
             SKPspecialMere.Visible = false;
             OmadsfavMere.Visible = false;
             ViktorsfavMere.Visible = false;
-            linkLabel4.Visible = false;
             numericUpDown1.Visible = false;
-        }
+            KontaktOsBox.Visible = false;
 
+
+        
+        }
+        public class Product
+        {
+            public string Name { get; set; }
+            public decimal Price { get; set; }
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -47,26 +55,19 @@ namespace Uge51_miniprojekt
         {
 
         }
-
+        //Adder den første pizza til listen over i "kurv" s
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (Pizza1.Text == string.Empty)
+            if(checkBox1.Checked == true)
             {
-                if (checkBox1.Checked == true)
-                {
-                    Pizza1.Text = "SKP Special";
-                    linkLabel4.Visible = true;
-                    numericUpDown1.Value = 1;
-                    numericUpDown1.Visible = true;
-                }
-                else
-                {
-                    Pizza1.Text = "";
-                    linkLabel4.Visible = false;
-                    numericUpDown1.Value = 0;
-                    numericUpDown1.Visible = false;
-                }
+                string[] row = { label2.Text + " " + SKPSpecialALM};
+                var ListViewItem = new ListViewItem(row);
+                listView1.Items.Add(ListViewItem);
+                numericUpDown1.Visible = true;
+                numericUpDown1.Value = 1;
             }
+            int totalprice = (int)((int)SKPSpecialALM * numericUpDown1.Value);
+            TotalPriceLabel.Text = "Total Pris: " + totalprice;
         }
 
             private void label3_Click(object sender, EventArgs e)
@@ -131,30 +132,62 @@ namespace Uge51_miniprojekt
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-
+            int totalprice = (int)((int)SKPSpecialALM * numericUpDown1.Value);
+            TotalPriceLabel.Text = "Total Pris: " + totalprice;
         }
 
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
+
+        }
+
+        private void kontaktOsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KontaktOsBox.Visible = true;
+            KontaktOsBox.BringToFront();
+        }
+
+        private void menuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            KontaktOsBox.Visible = false;
+        }
+
+        private void richTextBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
             {
-                if (Pizza1.Text == string.Empty)
+                if (checkBox2.Checked == true)
                 {
-                    if (checkBox3.Checked == true)
-                    {
-                        Pizza1.Text = "Omad's Favorit";
-                        linkLabel4.Visible = true;
-                        numericUpDown1.Value = 1;
-                        numericUpDown1.Visible = true;
-                    }
-                    else
-                    {
-                        Pizza1.Text = "";
-                        linkLabel4.Visible = false;
-                        numericUpDown1.Value = 0;
-                        numericUpDown1.Visible = false;
-                    }
+                    string[] row = { label2.Text + " " + checkBox2.Text };
+                    var ListViewItem = new ListViewItem(row);
+                    listView1.Items.Add(ListViewItem);
                 }
+
             }
+        }
+
+        private void TotalPriceLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -10,10 +10,11 @@ using System.Windows.Forms;
 
 namespace Uge51_miniprojekt
 {
-    public partial class Form1 : Form
+    public partial class SKPPizzeria : Form
     {
         int totalpris = 0;
-        public Form1()
+        //Gemmer de ting der skal gemmes før de skal bruge
+        public SKPPizzeria()
         {
             InitializeComponent();
             SKPspecialMere.Visible = false;
@@ -32,11 +33,6 @@ namespace Uge51_miniprojekt
         {
             public string Name { get; set; }
             public decimal Price { get; set; }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            groupBox1.Visible = true;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -58,14 +54,14 @@ namespace Uge51_miniprojekt
         {
 
         }
-        //Adder den første pizza til listen over i "kurv" s
+        //Tilføjer den første pizza til listen over i kurven og renger prisen sammen
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked == true)
+            if (SKPSpcialALMCheckBox.Checked == true)
             {
-                string[] row = { label2.Text + " " + "65 kr." };
+                string[] row = { SKPSpecialLabel.Text + " " + "65 kr." };
                 var ListViewItem = new ListViewItem(row);
-                listView1.Items.Add(ListViewItem);
+                KurvListView.Items.Add(ListViewItem);
                 numericUpDown1.Visible = true;
                 totalpris += 65;
                 numericUpDown1.Value = 1;
@@ -144,27 +140,27 @@ namespace Uge51_miniprojekt
         }
 
 
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox3_CheckedChanged(object sender, EventArgs e)
         {
             {
-                if (checkBox3.Checked == true)
+                if (OmadsFavALMCheckBox.Checked == true)
                 {
-                    string[] row = { label3.Text + " " + checkBox3.Text};
+                    string[] row = { OmadsFavLabel.Text + " " + OmadsFavALMCheckBox.Text};
                     var ListViewItem = new ListViewItem(row);
-                    listView1.Items.Add(ListViewItem);
+                    KurvListView.Items.Add(ListViewItem);
                     totalpris += 60;
                     TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
                 }
             }
         }
-
+        //Viser KontaktosVinduet efter tryk i menu baren
         private void kontaktOsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KontaktOsBox.Visible = true;
             KontaktOsBox.BringToFront();
         }
-
+        //Gemmer KontaktosVinduet når man trykker på "menu" i menu baren
         private void menuToolStripMenuItem_Click(object sender, EventArgs e)
         {
             KontaktOsBox.Visible = false;
@@ -184,15 +180,15 @@ namespace Uge51_miniprojekt
         {
 
         }
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox2_CheckedChanged(object sender, EventArgs e)
         {
             {
-                if (checkBox2.Checked == true)
+                if (SKPSpecialFAMCheckBox.Checked == true)
                 {
-                    string[] row = { label2.Text + " " + checkBox2.Text };
+                    string[] row = { SKPSpecialLabel.Text + " " + SKPSpecialFAMCheckBox.Text };
                     var ListViewItem = new ListViewItem(row);
-                    listView1.Items.Add(ListViewItem);
+                    KurvListView.Items.Add(ListViewItem);
                     totalpris += 120;
                     TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
                 }
@@ -209,15 +205,15 @@ namespace Uge51_miniprojekt
         {
 
         }
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox4_CheckedChanged(object sender, EventArgs e)
         {
             {
-                if (checkBox4.Checked == true)
+                if (OmadsFavFAMCheckBox.Checked == true)
                 {
-                    string[] row = { label3.Text + " " + checkBox4.Text };
+                    string[] row = { OmadsFavLabel.Text + " " + OmadsFavFAMCheckBox.Text };
                     var ListViewItem = new ListViewItem(row);
-                    listView1.Items.Add(ListViewItem);
+                    KurvListView.Items.Add(ListViewItem);
                     totalpris += 110;
                     TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
 
@@ -225,100 +221,100 @@ namespace Uge51_miniprojekt
             }
         }
 
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox5_CheckedChanged(object sender, EventArgs e)
         {
             {
-                if (checkBox5.Checked == true)
+                if (ViktorsFavALMCheckBox.Checked == true)
                 {
-                    string[] row = { label6.Text + " " + checkBox5.Text};
+                    string[] row = { ViktorsFavLabel.Text + " " + ViktorsFavALMCheckBox.Text};
                     var ListViewItem = new ListViewItem(row);
-                    listView1.Items.Add(ListViewItem);
+                    KurvListView.Items.Add(ListViewItem);
                     totalpris += 50;
                     TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
                 }
             }
         }
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox6.Checked == true)
+            if (ViktorsFavFAMCheckOs.Checked == true)
             {
-                string[] row = { label6.Text + " " + checkBox6.Text };
+                string[] row = { ViktorsFavLabel.Text + " " + ViktorsFavFAMCheckOs.Text };
                 var ListViewItem = new ListViewItem(row);
-                listView1.Items.Add(ListViewItem);
+                KurvListView.Items.Add(ListViewItem);
                 totalpris += 100;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
             }
         }
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox7_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox7.Checked == true)
+            if (EgenPizzaALMCheckOs.Checked == true)
             {
-                string[] row = { label8.Text + " " + checkBox7.Text };
+                string[] row = { EgenPizzaLabel.Text + " " + EgenPizzaALMCheckOs.Text };
                 var ListViewItem = new ListViewItem(row);
-                listView1.Items.Add(ListViewItem);
+                KurvListView.Items.Add(ListViewItem);
                 totalpris += 30;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
             }
         }
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox8_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox8.Checked == true)
+            if (EgenPizzaFAMCheckBox.Checked == true)
             {
-                string[] row = { label8.Text + " " + checkBox8.Text };
+                string[] row = { EgenPizzaLabel.Text + " " + EgenPizzaFAMCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
-                listView1.Items.Add(ListViewItem);
+                KurvListView.Items.Add(ListViewItem);
                 totalpris += 80;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
             }
         }
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox9_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox9.Checked == true)
+            if (CocaCola05LCheckBox.Checked == true)
             {
-                string[] row = { checkBox9.Text };
+                string[] row = { CocaCola05LCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
-                listView1.Items.Add(ListViewItem);
+                KurvListView.Items.Add(ListViewItem);
                 totalpris += 18;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
             }
         }
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox10_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox10.Checked == true)
+            if (CocaCola1LCheckBox.Checked == true)
             {
-                string[] row = { checkBox10.Text };
+                string[] row = { CocaCola1LCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
-                listView1.Items.Add(ListViewItem);
+                KurvListView.Items.Add(ListViewItem);
                 totalpris += 30;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
             }
         }
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox11_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox11.Checked == true)
+            if (Fanta05LCheckBox.Checked == true)
             {
-                string[] row = { checkBox11.Text };
+                string[] row = { Fanta05LCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
-                listView1.Items.Add(ListViewItem);
+                KurvListView.Items.Add(ListViewItem);
                 totalpris += 18;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
             }
         }
-
+        //Tilføjer en pizza til listen over i kurven og renger prisen sammen
         private void checkBox12_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox12.Checked == true)
+            if (Fanta1LCheckBox.Checked == true)
             {
-                string[] row = { checkBox12.Text };
+                string[] row = { Fanta1LCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
-                listView1.Items.Add(ListViewItem);
+                KurvListView.Items.Add(ListViewItem);
                 totalpris += 30;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
             }
@@ -327,19 +323,19 @@ namespace Uge51_miniprojekt
         {
 
         }
-
+        //Som mulig for at kunne lukke "mere" hpyerlinks info'en ned igen efter åbning
         private void label14_Click(object sender, EventArgs e)
         {
             label14.Visible = false;
             SKPspecialMere.Visible = false;
         }
-
+        //Som mulig for at kunne lukke "mere" hpyerlinks info'en ned igen efter åbning
         private void label15_Click(object sender, EventArgs e)
         {
             label15.Visible = false;
             OmadsfavMere.Visible = false;
         }
-
+        //Som mulig for at kunne lukke "mere" hpyerlinks info'en ned igen efter åbning
         private void label16_Click(object sender, EventArgs e)
         {
             label16.Visible = false;

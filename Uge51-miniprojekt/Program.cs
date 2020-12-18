@@ -16,7 +16,7 @@ namespace Uge51_miniprojekt
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new SKPPizzeria());
         }
     }
 }

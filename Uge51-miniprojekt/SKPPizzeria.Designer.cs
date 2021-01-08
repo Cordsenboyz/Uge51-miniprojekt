@@ -57,12 +57,14 @@ namespace Uge51_miniprojekt
             this.EgenPizzaALMCheckOs = new System.Windows.Forms.CheckBox();
             this.EgenPizzaFAMCheckBox = new System.Windows.Forms.CheckBox();
             this.KurvGroupBox = new System.Windows.Forms.GroupBox();
+            this.RydKurvKnap = new System.Windows.Forms.Button();
             this.KurvListView = new System.Windows.Forms.ListView();
             this.TotalPriceLabel = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label9 = new System.Windows.Forms.Label();
             this.BestilButton = new System.Windows.Forms.Button();
+            this.EgenPizzaList = new System.Windows.Forms.ListBox();
             this.KontaktOsBox = new System.Windows.Forms.GroupBox();
             this.label13 = new System.Windows.Forms.Label();
             this.KontaktOsRichTextBox = new System.Windows.Forms.RichTextBox();
@@ -106,7 +108,7 @@ namespace Uge51_miniprojekt
             this.kontaktOsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(792, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(900, 24);
             this.menuStrip1.TabIndex = 3;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -353,6 +355,7 @@ namespace Uge51_miniprojekt
             // 
             // KurvGroupBox
             // 
+            this.KurvGroupBox.Controls.Add(this.RydKurvKnap);
             this.KurvGroupBox.Controls.Add(this.KurvListView);
             this.KurvGroupBox.Controls.Add(this.TotalPriceLabel);
             this.KurvGroupBox.Controls.Add(this.label10);
@@ -362,11 +365,22 @@ namespace Uge51_miniprojekt
             this.KurvGroupBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KurvGroupBox.Location = new System.Drawing.Point(12, 41);
             this.KurvGroupBox.Name = "KurvGroupBox";
-            this.KurvGroupBox.Size = new System.Drawing.Size(200, 397);
+            this.KurvGroupBox.Size = new System.Drawing.Size(215, 397);
             this.KurvGroupBox.TabIndex = 25;
             this.KurvGroupBox.TabStop = false;
             this.KurvGroupBox.Text = "Kurv";
             this.KurvGroupBox.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // RydKurvKnap
+            // 
+            this.RydKurvKnap.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.RydKurvKnap.Location = new System.Drawing.Point(0, 370);
+            this.RydKurvKnap.Name = "RydKurvKnap";
+            this.RydKurvKnap.Size = new System.Drawing.Size(37, 27);
+            this.RydKurvKnap.TabIndex = 4;
+            this.RydKurvKnap.Text = "Ryd";
+            this.RydKurvKnap.UseVisualStyleBackColor = true;
+            this.RydKurvKnap.Click += new System.EventHandler(this.button1_Click);
             // 
             // KurvListView
             // 
@@ -374,11 +388,12 @@ namespace Uge51_miniprojekt
             this.KurvListView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.KurvListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KurvListView.HideSelection = false;
-            this.KurvListView.Location = new System.Drawing.Point(6, 88);
+            this.KurvListView.Location = new System.Drawing.Point(10, 88);
             this.KurvListView.Name = "KurvListView";
-            this.KurvListView.Size = new System.Drawing.Size(154, 249);
+            this.KurvListView.Size = new System.Drawing.Size(199, 249);
             this.KurvListView.TabIndex = 27;
             this.KurvListView.UseCompatibleStateImageBehavior = false;
+            this.KurvListView.View = System.Windows.Forms.View.Tile;
             this.KurvListView.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
             // 
             // TotalPriceLabel
@@ -428,6 +443,27 @@ namespace Uge51_miniprojekt
             this.BestilButton.Text = "Bestil";
             this.BestilButton.UseVisualStyleBackColor = true;
             // 
+            // EgenPizzaList
+            // 
+            this.EgenPizzaList.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.EgenPizzaList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.EgenPizzaList.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.EgenPizzaList.FormattingEnabled = true;
+            this.EgenPizzaList.ItemHeight = 16;
+            this.EgenPizzaList.Items.AddRange(new object[] {
+            "Skinke 5 kr.",
+            "Kebab 5 kr.",
+            "Dressing 5 kr.",
+            "Salat 5kr.",
+            "Chili 5 kr.",
+            "Tomatsovs 5 kr.",
+            "Ost 5kr."});
+            this.EgenPizzaList.Location = new System.Drawing.Point(60, 457);
+            this.EgenPizzaList.Name = "EgenPizzaList";
+            this.EgenPizzaList.Size = new System.Drawing.Size(110, 128);
+            this.EgenPizzaList.TabIndex = 4;
+            this.EgenPizzaList.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
+            // 
             // KontaktOsBox
             // 
             this.KontaktOsBox.Controls.Add(this.label13);
@@ -436,7 +472,7 @@ namespace Uge51_miniprojekt
             this.KontaktOsBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.KontaktOsBox.Location = new System.Drawing.Point(1, 24);
             this.KontaktOsBox.Name = "KontaktOsBox";
-            this.KontaktOsBox.Size = new System.Drawing.Size(790, 509);
+            this.KontaktOsBox.Size = new System.Drawing.Size(899, 573);
             this.KontaktOsBox.TabIndex = 26;
             this.KontaktOsBox.TabStop = false;
             this.KontaktOsBox.Text = "Kontakt Os";
@@ -565,12 +601,13 @@ namespace Uge51_miniprojekt
             this.label16.Text = "x";
             this.label16.Click += new System.EventHandler(this.label16_Click);
             // 
-            // Form1
+            // SKPPizzeria
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.ClientSize = new System.Drawing.Size(792, 530);
+            this.ClientSize = new System.Drawing.Size(900, 598);
+            this.Controls.Add(this.EgenPizzaList);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.DrikkevarerLabel);
@@ -605,7 +642,7 @@ namespace Uge51_miniprojekt
             this.Controls.Add(this.SKPPizzeriaHeadLabel);
             this.Controls.Add(this.KontaktOsBox);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
+            this.Name = "SKPPizzeria";
             this.Text = "Tae Tusj";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
@@ -666,6 +703,8 @@ namespace Uge51_miniprojekt
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Button RydKurvKnap;
+        private System.Windows.Forms.ListBox EgenPizzaList;
     }
 }
 

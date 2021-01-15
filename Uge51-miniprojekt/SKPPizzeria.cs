@@ -19,6 +19,7 @@ namespace Uge51_miniprojekt
         int RabatPizza = 0;
         bool Rabat = false;
         int RabatDrikkevare = 0;
+
         //Gemmer de ting der skal gemmes før de skal bruge
         public SKPPizzeria()
         {
@@ -32,11 +33,7 @@ namespace Uge51_miniprojekt
             label15.Visible = false;
             label16.Visible = false;
             EgenPizzaList.Visible = false;
-            
-
-
-
-
+            BestilButton.Visible = false;
         }
         public class Product
         {
@@ -65,35 +62,37 @@ namespace Uge51_miniprojekt
 
         }
         //Tilføjer den første pizza til listen over i kurven og renger prisen sammen
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        public void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (SKPSpcialALMCheckBox.Checked == true)
             {
+                BestilButton.Visible = true;
                 string[] row = { SKPSpecialLabel.Text + " " + "65 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
-                List<Button> buttons = new List<Button>();
-                Button newbutton = new Button();
-                buttons.Add(newbutton);
-                newbutton.Name = "MereKnap";
-                newbutton.Text = "+";
-                newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                newbutton.Size = new Size(31, 22);
-                newbutton.Click += new EventHandler(NewButton_Click);
-                KurvListView.Controls.Add(newbutton);
-                List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                NumericUpDown newnumericUpDown = new NumericUpDown();
-                numericUpDowns.Add(newnumericUpDown);
-                newnumericUpDown.Value = 1;
-                newnumericUpDown.Name = "AmountCalculator";
-                newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                newnumericUpDown.Size = new Size(31, 22);
-                newnumericUpDown.Visible = true;
-                KurvListView.Controls.Add(newnumericUpDown);
+                List<Button> MereKnapCreation = new List<Button>();
+                Button NyMereKnapCreation = new Button();
+                MereKnapCreation.Add(NyMereKnapCreation);
+                NyMereKnapCreation.Name = "MereKnap";
+                NyMereKnapCreation.Text = "+";
+                NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                NyMereKnapCreation.Size = new Size(31, 22);
+                NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                KurvListView.Controls.Add(NyMereKnapCreation);
+                List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                nyAntalPizzaUpDown.Value = 1;
+                nyAntalPizzaUpDown.Name = "AmountCalculator";
+                nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                nyAntalPizzaUpDown.Size = new Size(31, 22);
+                nyAntalPizzaUpDown.Visible = true;
+                nyAntalPizzaUpDown.ValueChanged += new EventHandler(SkpSpecialAlm_ValueChange);
+                KurvListView.Controls.Add(nyAntalPizzaUpDown);
                 yAmountCalculator += 30;
                 /*numericUpDown1.Visible = true;
                 numericUpDown1.Value = 1;*/
-                int Skpspeicalpris = (int)(65 * newnumericUpDown.Value);
+                int Skpspeicalpris = (int)(65 * nyAntalPizzaUpDown.Value);
                 totalpris += Skpspeicalpris;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
             }
@@ -103,6 +102,7 @@ namespace Uge51_miniprojekt
                 string[] row = { "Rabat -30 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
+                totalpris -= 30;
                 Rabat = true;
                 TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                 yAmountCalculator += 30;
@@ -113,7 +113,6 @@ namespace Uge51_miniprojekt
         {
 
         }
-
         //Ændre Visiblily på "mere" info boxes omkring Pizzaerne efter click
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -186,27 +185,29 @@ namespace Uge51_miniprojekt
             {
                 if (OmadsFavALMCheckBox.Checked == true)
                 {
+                    BestilButton.Visible = true;
                     string[] row = { OmadsFavLabel.Text + " " + OmadsFavALMCheckBox.Text};
                     var ListViewItem = new ListViewItem(row);
                     KurvListView.Items.Add(ListViewItem);
-                    List<Button> buttons = new List<Button>();
-                    Button newbutton = new Button();
-                    buttons.Add(newbutton);
-                    newbutton.Name = "MereKnap";
-                    newbutton.Text = "+";
-                    newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                    newbutton.Size = new Size(31, 22);
-                    newbutton.Click += new EventHandler(NewButton_Click);
-                    KurvListView.Controls.Add(newbutton);
-                    List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                    NumericUpDown newnumericUpDown = new NumericUpDown();
-                    numericUpDowns.Add(newnumericUpDown);
-                    newnumericUpDown.Value = 1;
-                    newnumericUpDown.Name = "AmountCalculator";
-                    newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                    newnumericUpDown.Size = new Size(31, 22);
-                    newnumericUpDown.Visible = true;
-                    KurvListView.Controls.Add(newnumericUpDown);
+                    List<Button> MereKnapCreation = new List<Button>();
+                    Button NyMereKnapCreation = new Button();
+                    MereKnapCreation.Add(NyMereKnapCreation);
+                    NyMereKnapCreation.Name = "MereKnap";
+                    NyMereKnapCreation.Text = "+";
+                    NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                    NyMereKnapCreation.Size = new Size(31, 22);
+                    NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                    KurvListView.Controls.Add(NyMereKnapCreation);
+                    List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                    NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                    AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                    nyAntalPizzaUpDown.Value = 1;
+                    nyAntalPizzaUpDown.Name = "AmountCalculator";
+                    nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                    nyAntalPizzaUpDown.Size = new Size(31, 22);
+                    nyAntalPizzaUpDown.Visible = true;
+                    nyAntalPizzaUpDown.ValueChanged += new EventHandler(OmadsFavAlmUpDown_ValueChange);
+                    KurvListView.Controls.Add(nyAntalPizzaUpDown);
                     yAmountCalculator += 30;
                     totalpris += 60;
                     TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -218,6 +219,7 @@ namespace Uge51_miniprojekt
                     string[] row = { "Rabat -30 kr." };
                     var ListViewItem = new ListViewItem(row);
                     KurvListView.Items.Add(ListViewItem);
+                    totalpris -= 30;
                     Rabat = true;
                     TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                     yAmountCalculator += 30;
@@ -256,27 +258,29 @@ namespace Uge51_miniprojekt
             {
                 if (SKPSpecialFAMCheckBox.Checked == true)
                 {
+                    BestilButton.Visible = true;
                     string[] row = { SKPSpecialLabel.Text + " " + SKPSpecialFAMCheckBox.Text };
                     var ListViewItem = new ListViewItem(row);
                     KurvListView.Items.Add(ListViewItem);
-                    List<Button> buttons = new List<Button>();
-                    Button newbutton = new Button();
-                    buttons.Add(newbutton);
-                    newbutton.Name = "MereKnap";
-                    newbutton.Text = "+";
-                    newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                    newbutton.Size = new Size(31, 22);
-                    newbutton.Click += new EventHandler(NewButton_Click);
-                    KurvListView.Controls.Add(newbutton);
-                    List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                    NumericUpDown newnumericUpDown = new NumericUpDown();
-                    numericUpDowns.Add(newnumericUpDown);
-                    newnumericUpDown.Value = 1;
-                    newnumericUpDown.Name = "AmountCalculator";
-                    newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                    newnumericUpDown.Size = new Size(31, 22);
-                    newnumericUpDown.Visible = true;
-                    KurvListView.Controls.Add(newnumericUpDown);
+                    List<Button> MereKnapCreation = new List<Button>();
+                    Button NyMereKnapCreation = new Button();
+                    MereKnapCreation.Add(NyMereKnapCreation);
+                    NyMereKnapCreation.Name = "MereKnap";
+                    NyMereKnapCreation.Text = "+";
+                    NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                    NyMereKnapCreation.Size = new Size(31, 22);
+                    NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                    KurvListView.Controls.Add(NyMereKnapCreation);
+                    List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                    NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                    AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                    nyAntalPizzaUpDown.Value = 1;
+                    nyAntalPizzaUpDown.Name = "AmountCalculator";
+                    nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                    nyAntalPizzaUpDown.Size = new Size(31, 22);
+                    nyAntalPizzaUpDown.Visible = true;
+                    nyAntalPizzaUpDown.ValueChanged += new EventHandler(SkpSpecialFam_ValueChange);
+                    KurvListView.Controls.Add(nyAntalPizzaUpDown);
                     yAmountCalculator += 30;
                     totalpris += 120;
                     TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -289,6 +293,7 @@ namespace Uge51_miniprojekt
                 string[] row = { "Rabat -30 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
+                totalpris -= 30;
                 Rabat = true;
                 TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                 yAmountCalculator += 30;
@@ -310,27 +315,29 @@ namespace Uge51_miniprojekt
             {
                 if (OmadsFavFAMCheckBox.Checked == true)
                 {
+                    BestilButton.Visible = true;
                     string[] row = { OmadsFavLabel.Text + " " + OmadsFavFAMCheckBox.Text };
                     var ListViewItem = new ListViewItem(row);
                     KurvListView.Items.Add(ListViewItem);
-                    List<Button> buttons = new List<Button>();
-                    Button newbutton = new Button();
-                    buttons.Add(newbutton);
-                    newbutton.Name = "MereKnap";
-                    newbutton.Text = "+";
-                    newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                    newbutton.Size = new Size(31, 22);
-                    newbutton.Click += new EventHandler(NewButton_Click);
-                    KurvListView.Controls.Add(newbutton);
-                    List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                    NumericUpDown newnumericUpDown = new NumericUpDown();
-                    numericUpDowns.Add(newnumericUpDown);
-                    newnumericUpDown.Value = 1;
-                    newnumericUpDown.Name = "AmountCalculator";
-                    newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                    newnumericUpDown.Size = new Size(31, 22);
-                    newnumericUpDown.Visible = true;
-                    KurvListView.Controls.Add(newnumericUpDown);
+                    List<Button> MereKnapCreation = new List<Button>();
+                    Button NyMereKnapCreation = new Button();
+                    MereKnapCreation.Add(NyMereKnapCreation);
+                    NyMereKnapCreation.Name = "MereKnap";
+                    NyMereKnapCreation.Text = "+";
+                    NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                    NyMereKnapCreation.Size = new Size(31, 22);
+                    NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                    KurvListView.Controls.Add(NyMereKnapCreation);
+                    List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                    NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                    AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                    nyAntalPizzaUpDown.Value = 1;
+                    nyAntalPizzaUpDown.Name = "AmountCalculator";
+                    nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                    nyAntalPizzaUpDown.Size = new Size(31, 22);
+                    nyAntalPizzaUpDown.Visible = true;
+                    nyAntalPizzaUpDown.ValueChanged += new EventHandler(OmadsFavFamUpDown_ValueChange);
+                    KurvListView.Controls.Add(nyAntalPizzaUpDown);
                     yAmountCalculator += 30;
                     totalpris += 110;
                     TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -342,6 +349,7 @@ namespace Uge51_miniprojekt
                     string[] row = { "Rabat -30 kr." };
                     var ListViewItem = new ListViewItem(row);
                     KurvListView.Items.Add(ListViewItem);
+                    totalpris -= 30;
                     Rabat = true;
                     TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                     yAmountCalculator += 30;
@@ -355,27 +363,29 @@ namespace Uge51_miniprojekt
             {
                 if (ViktorsFavALMCheckBox.Checked == true)
                 {
+                    BestilButton.Visible = true;
                     string[] row = { ViktorsFavLabel.Text + " " + ViktorsFavALMCheckBox.Text};
                     var ListViewItem = new ListViewItem(row);
                     KurvListView.Items.Add(ListViewItem);
-                    List<Button> buttons = new List<Button>();
-                    Button newbutton = new Button();
-                    buttons.Add(newbutton);
-                    newbutton.Name = "MereKnap";
-                    newbutton.Text = "+";
-                    newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                    newbutton.Size = new Size(31, 22);
-                    newbutton.Click += new EventHandler(NewButton_Click);
-                    KurvListView.Controls.Add(newbutton);
-                    List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                    NumericUpDown newnumericUpDown = new NumericUpDown();
-                    numericUpDowns.Add(newnumericUpDown);
-                    newnumericUpDown.Value = 1;
-                    newnumericUpDown.Name = "AmountCalculator";
-                    newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                    newnumericUpDown.Size = new Size(31, 22);
-                    newnumericUpDown.Visible = true;
-                    KurvListView.Controls.Add(newnumericUpDown);
+                    List<Button> MereKnapCreation = new List<Button>();
+                    Button NyMereKnapCreation = new Button();
+                    MereKnapCreation.Add(NyMereKnapCreation);
+                    NyMereKnapCreation.Name = "MereKnap";
+                    NyMereKnapCreation.Text = "+";
+                    NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                    NyMereKnapCreation.Size = new Size(31, 22);
+                    NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                    KurvListView.Controls.Add(NyMereKnapCreation);
+                    List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                    NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                    AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                    nyAntalPizzaUpDown.Value = 1;
+                    nyAntalPizzaUpDown.Name = "AmountCalculator";
+                    nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                    nyAntalPizzaUpDown.Size = new Size(31, 22);
+                    nyAntalPizzaUpDown.Visible = true;
+                    nyAntalPizzaUpDown.ValueChanged += new EventHandler(ViktorsFavAlmUpDown_ValueChange);
+                    KurvListView.Controls.Add(nyAntalPizzaUpDown);
                     yAmountCalculator += 30;
                     totalpris += 50;
                     TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -386,6 +396,7 @@ namespace Uge51_miniprojekt
                     string[] row = { "Rabat -30 kr." };
                     var ListViewItem = new ListViewItem(row);
                     KurvListView.Items.Add(ListViewItem);
+                    totalpris -= 30;
                     Rabat = true;
                     TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                     yAmountCalculator += 30;
@@ -397,27 +408,29 @@ namespace Uge51_miniprojekt
         {
             if (ViktorsFavFAMCheckOs.Checked == true)
             {
+                BestilButton.Visible = true;
                 string[] row = { ViktorsFavLabel.Text + " " + ViktorsFavFAMCheckOs.Text };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
-                List<Button> buttons = new List<Button>();
-                Button newbutton = new Button();
-                buttons.Add(newbutton);
-                newbutton.Name = "MereKnap";
-                newbutton.Text = "+";
-                newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                newbutton.Size = new Size(31, 22);
-                newbutton.Click += new EventHandler(NewButton_Click);
-                KurvListView.Controls.Add(newbutton);
-                List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                NumericUpDown newnumericUpDown = new NumericUpDown();
-                numericUpDowns.Add(newnumericUpDown);
-                newnumericUpDown.Value = 1;
-                newnumericUpDown.Name = "AmountCalculator";
-                newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                newnumericUpDown.Size = new Size(31, 22);
-                newnumericUpDown.Visible = true;
-                KurvListView.Controls.Add(newnumericUpDown);
+                List<Button> MereKnapCreation = new List<Button>();
+                Button NyMereKnapCreation = new Button();
+                MereKnapCreation.Add(NyMereKnapCreation);
+                NyMereKnapCreation.Name = "MereKnap";
+                NyMereKnapCreation.Text = "+";
+                NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                NyMereKnapCreation.Size = new Size(31, 22);
+                NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                KurvListView.Controls.Add(NyMereKnapCreation);
+                List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                nyAntalPizzaUpDown.Value = 1;
+                nyAntalPizzaUpDown.Name = "AmountCalculator";
+                nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                nyAntalPizzaUpDown.Size = new Size(31, 22);
+                nyAntalPizzaUpDown.Visible = true;
+                nyAntalPizzaUpDown.ValueChanged += new EventHandler(ViktorsFavFamUpDown_ValueChange);
+                KurvListView.Controls.Add(nyAntalPizzaUpDown);
                 yAmountCalculator += 30;
                 totalpris += 100;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -428,6 +441,7 @@ namespace Uge51_miniprojekt
                 string[] row = { "Rabat -30 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
+                totalpris -= 30;
                 Rabat = true;
                 TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                 yAmountCalculator += 30;
@@ -438,27 +452,30 @@ namespace Uge51_miniprojekt
         {
             if (EgenPizzaALMCheckOs.Checked == true)
             {
+                BestilButton.Visible = true;
+                EgenPizzaList.Visible = true;
                 string[] row = { EgenPizzaLabel.Text + " " + EgenPizzaALMCheckOs.Text };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
-                List<Button> buttons = new List<Button>();
-                Button newbutton = new Button();
-                buttons.Add(newbutton);
-                newbutton.Name = "MereKnap";
-                newbutton.Text = "+";
-                newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                newbutton.Size = new Size(31, 22);
-                newbutton.Click += new EventHandler(NewButton_Click);
-                KurvListView.Controls.Add(newbutton);
-                List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                NumericUpDown newnumericUpDown = new NumericUpDown();
-                numericUpDowns.Add(newnumericUpDown);
-                newnumericUpDown.Value = 1;
-                newnumericUpDown.Name = "AmountCalculator";
-                newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                newnumericUpDown.Size = new Size(31, 22);
-                newnumericUpDown.Visible = true;
-                KurvListView.Controls.Add(newnumericUpDown);
+                List<Button> MereKnapCreation = new List<Button>();
+                Button NyMereKnapCreation = new Button();
+                MereKnapCreation.Add(NyMereKnapCreation);
+                NyMereKnapCreation.Name = "MereKnap";
+                NyMereKnapCreation.Text = "+";
+                NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                NyMereKnapCreation.Size = new Size(31, 22);
+                NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                KurvListView.Controls.Add(NyMereKnapCreation);
+                List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                nyAntalPizzaUpDown.Value = 1;
+                nyAntalPizzaUpDown.Name = "AmountCalculator";
+                nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                nyAntalPizzaUpDown.Size = new Size(31, 22);
+                nyAntalPizzaUpDown.Visible = true;
+                nyAntalPizzaUpDown.ValueChanged += new EventHandler(EgenPizzaAlm_ValueChange);
+                KurvListView.Controls.Add(nyAntalPizzaUpDown);
                 yAmountCalculator += 30;
                 KurvListView.Items[0].SubItems.Add("Skinke");
                 totalpris += 30;
@@ -470,6 +487,7 @@ namespace Uge51_miniprojekt
                 string[] row = { "Rabat -30 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
+                totalpris -= 30;
                 Rabat = true;
                 TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                 yAmountCalculator += 30;
@@ -480,27 +498,30 @@ namespace Uge51_miniprojekt
         {
             if (EgenPizzaFAMCheckBox.Checked == true)
             {
+                BestilButton.Visible = true;
+                EgenPizzaList.Visible = true;
                 string[] row = { EgenPizzaLabel.Text + " " + EgenPizzaFAMCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
-                List<Button> buttons = new List<Button>();
-                Button newbutton = new Button();
-                buttons.Add(newbutton);
-                newbutton.Name = "MereKnap";
-                newbutton.Text = "+";
-                newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                newbutton.Size = new Size(31, 22);
-                newbutton.Click += new EventHandler(NewButton_Click);
-                KurvListView.Controls.Add(newbutton);
-                List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                NumericUpDown newnumericUpDown = new NumericUpDown();
-                numericUpDowns.Add(newnumericUpDown);
-                newnumericUpDown.Value = 1;
-                newnumericUpDown.Name = "AmountCalculator";
-                newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                newnumericUpDown.Size = new Size(31, 22);
-                newnumericUpDown.Visible = true;
-                KurvListView.Controls.Add(newnumericUpDown);
+                List<Button> MereKnapCreation = new List<Button>();
+                Button NyMereKnapCreation = new Button();
+                MereKnapCreation.Add(NyMereKnapCreation);
+                NyMereKnapCreation.Name = "MereKnap";
+                NyMereKnapCreation.Text = "+";
+                NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                NyMereKnapCreation.Size = new Size(31, 22);
+                NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                KurvListView.Controls.Add(NyMereKnapCreation);
+                List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                nyAntalPizzaUpDown.Value = 1;
+                nyAntalPizzaUpDown.Name = "AmountCalculator";
+                nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                nyAntalPizzaUpDown.Size = new Size(31, 22);
+                nyAntalPizzaUpDown.Visible = true;
+                nyAntalPizzaUpDown.ValueChanged += new EventHandler(EgenPizzaFam_ValueChange);
+                KurvListView.Controls.Add(nyAntalPizzaUpDown);
                 yAmountCalculator += 30;
                 totalpris += 80;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -511,6 +532,7 @@ namespace Uge51_miniprojekt
                 string[] row = { "Rabat -30 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
+                totalpris -= 30;
                 Rabat = true;
                 TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                 yAmountCalculator += 30;
@@ -521,27 +543,29 @@ namespace Uge51_miniprojekt
         {
             if (CocaCola05LCheckBox.Checked == true)
             {
+                BestilButton.Visible = true;
                 string[] row = { CocaCola05LCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
-                List<Button> buttons = new List<Button>();
-                Button newbutton = new Button();
-                buttons.Add(newbutton);
-                newbutton.Name = "MereKnap";
-                newbutton.Text = "+";
-                newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                newbutton.Size = new Size(31, 22);
-                newbutton.Click += new EventHandler(NewButton_Click);
-                KurvListView.Controls.Add(newbutton);
-                List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                NumericUpDown newnumericUpDown = new NumericUpDown();
-                numericUpDowns.Add(newnumericUpDown);
-                newnumericUpDown.Value = 1;
-                newnumericUpDown.Name = "AmountCalculator";
-                newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                newnumericUpDown.Size = new Size(31, 22);
-                newnumericUpDown.Visible = true;
-                KurvListView.Controls.Add(newnumericUpDown);
+                List<Button> MereKnapCreation = new List<Button>();
+                Button NyMereKnapCreation = new Button();
+                MereKnapCreation.Add(NyMereKnapCreation);
+                NyMereKnapCreation.Name = "MereKnap";
+                NyMereKnapCreation.Text = "+";
+                NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                NyMereKnapCreation.Size = new Size(31, 22);
+                NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                KurvListView.Controls.Add(NyMereKnapCreation);
+                List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                nyAntalPizzaUpDown.Value = 1;
+                nyAntalPizzaUpDown.Name = "AmountCalculator";
+                nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                nyAntalPizzaUpDown.Size = new Size(31, 22);
+                nyAntalPizzaUpDown.Visible = true;
+                nyAntalPizzaUpDown.ValueChanged += new EventHandler(Cola05LUpDown_ValueChange);
+                KurvListView.Controls.Add(nyAntalPizzaUpDown);
                 yAmountCalculator += 30;
                 totalpris += 18;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -552,6 +576,7 @@ namespace Uge51_miniprojekt
                 string[] row = { "Rabat -30 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
+                totalpris -= 30;
                 Rabat = true;
                 TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                 yAmountCalculator += 30;
@@ -562,27 +587,29 @@ namespace Uge51_miniprojekt
         {
             if (CocaCola1LCheckBox.Checked == true)
             {
+                BestilButton.Visible = true;
                 string[] row = { CocaCola1LCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
-                List<Button> buttons = new List<Button>();
-                Button newbutton = new Button();
-                buttons.Add(newbutton);
-                newbutton.Name = "MereKnap";
-                newbutton.Text = "+";
-                newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                newbutton.Size = new Size(31, 22);
-                newbutton.Click += new EventHandler(NewButton_Click);
-                KurvListView.Controls.Add(newbutton);
-                List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                NumericUpDown newnumericUpDown = new NumericUpDown();
-                numericUpDowns.Add(newnumericUpDown);
-                newnumericUpDown.Value = 1;
-                newnumericUpDown.Name = "AmountCalculator";
-                newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                newnumericUpDown.Size = new Size(31, 22);
-                newnumericUpDown.Visible = true;
-                KurvListView.Controls.Add(newnumericUpDown);
+                List<Button> MereKnapCreation = new List<Button>();
+                Button NyMereKnapCreation = new Button();
+                MereKnapCreation.Add(NyMereKnapCreation);
+                NyMereKnapCreation.Name = "MereKnap";
+                NyMereKnapCreation.Text = "+";
+                NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                NyMereKnapCreation.Size = new Size(31, 22);
+                NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                KurvListView.Controls.Add(NyMereKnapCreation);
+                List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                nyAntalPizzaUpDown.Value = 1;
+                nyAntalPizzaUpDown.Name = "AmountCalculator";
+                nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                nyAntalPizzaUpDown.Size = new Size(31, 22);
+                nyAntalPizzaUpDown.Visible = true;
+                nyAntalPizzaUpDown.ValueChanged += new EventHandler(Cola15LUpDown_ValueChange);
+                KurvListView.Controls.Add(nyAntalPizzaUpDown);
                 yAmountCalculator += 30;
                 totalpris += 30;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -590,9 +617,11 @@ namespace Uge51_miniprojekt
             RabatDrikkevare += 1;
             if (RabatPizza >= 2 && RabatDrikkevare >= 2 && Rabat == false)
             {
+                BestilButton.Visible = true;
                 string[] row = { "Rabat -30 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
+                totalpris -= 30;
                 Rabat = true;
                 TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                 yAmountCalculator += 30;
@@ -603,27 +632,29 @@ namespace Uge51_miniprojekt
         {
             if (Fanta05LCheckBox.Checked == true)
             {
+                BestilButton.Visible = true;
                 string[] row = { Fanta05LCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
-                List<Button> buttons = new List<Button>();
-                Button newbutton = new Button();
-                buttons.Add(newbutton);
-                newbutton.Name = "MereKnap";
-                newbutton.Text = "+";
-                newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                newbutton.Size = new Size(31, 22);
-                newbutton.Click += new EventHandler(NewButton_Click);
-                KurvListView.Controls.Add(newbutton);
-                List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                NumericUpDown newnumericUpDown = new NumericUpDown();
-                numericUpDowns.Add(newnumericUpDown);
-                newnumericUpDown.Value = 1;
-                newnumericUpDown.Name = "AmountCalculator";
-                newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                newnumericUpDown.Size = new Size(31, 22);
-                newnumericUpDown.Visible = true;
-                KurvListView.Controls.Add(newnumericUpDown);
+                List<Button> MereKnapCreation = new List<Button>();
+                Button NyMereKnapCreation = new Button();
+                MereKnapCreation.Add(NyMereKnapCreation);
+                NyMereKnapCreation.Name = "MereKnap";
+                NyMereKnapCreation.Text = "+";
+                NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                NyMereKnapCreation.Size = new Size(31, 22);
+                NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                KurvListView.Controls.Add(NyMereKnapCreation);
+                List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                nyAntalPizzaUpDown.Value = 1;
+                nyAntalPizzaUpDown.Name = "AmountCalculator";
+                nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                nyAntalPizzaUpDown.Size = new Size(31, 22);
+                nyAntalPizzaUpDown.Visible = true;
+                nyAntalPizzaUpDown.ValueChanged += new EventHandler(Fanta05LUpDown_ValueChange);
+                KurvListView.Controls.Add(nyAntalPizzaUpDown);
                 yAmountCalculator += 30;
                 totalpris += 18;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -634,6 +665,7 @@ namespace Uge51_miniprojekt
                 string[] row = { "Rabat -30 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
+                totalpris -= 30;
                 Rabat = true;
                 TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                 yAmountCalculator += 30;
@@ -644,27 +676,29 @@ namespace Uge51_miniprojekt
         {
             if (Fanta1LCheckBox.Checked == true)
             {
+                BestilButton.Visible = true;
                 string[] row = { Fanta1LCheckBox.Text };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
-                List<Button> buttons = new List<Button>();
-                Button newbutton = new Button();
-                buttons.Add(newbutton);
-                newbutton.Name = "MereKnap";
-                newbutton.Text = "+";
-                newbutton.Location = new Point(133, 0 + yAmountCalculator);
-                newbutton.Size = new Size(31, 22);
-                newbutton.Click += new EventHandler(NewButton_Click);
-                KurvListView.Controls.Add(newbutton);
-                List<NumericUpDown> numericUpDowns = new List<NumericUpDown>();
-                NumericUpDown newnumericUpDown = new NumericUpDown();
-                numericUpDowns.Add(newnumericUpDown);
-                newnumericUpDown.Value = 1;
-                newnumericUpDown.Name = "AmountCalculator";
-                newnumericUpDown.Location = new Point(168, 0 + yAmountCalculator);
-                newnumericUpDown.Size = new Size(31, 22);
-                newnumericUpDown.Visible = true;
-                KurvListView.Controls.Add(newnumericUpDown);
+                List<Button> MereKnapCreation = new List<Button>();
+                Button NyMereKnapCreation = new Button();
+                MereKnapCreation.Add(NyMereKnapCreation);
+                NyMereKnapCreation.Name = "MereKnap";
+                NyMereKnapCreation.Text = "+";
+                NyMereKnapCreation.Location = new Point(133, 0 + yAmountCalculator);
+                NyMereKnapCreation.Size = new Size(31, 22);
+                NyMereKnapCreation.Click += new EventHandler(NewButton_Click);
+                KurvListView.Controls.Add(NyMereKnapCreation);
+                List<NumericUpDown> AntalPizzaUpDown = new List<NumericUpDown>();
+                NumericUpDown nyAntalPizzaUpDown = new NumericUpDown();
+                AntalPizzaUpDown.Add(nyAntalPizzaUpDown);
+                nyAntalPizzaUpDown.Value = 1;
+                nyAntalPizzaUpDown.Name = "AmountCalculator";
+                nyAntalPizzaUpDown.Location = new Point(168, 0 + yAmountCalculator);
+                nyAntalPizzaUpDown.Size = new Size(31, 22);
+                nyAntalPizzaUpDown.Visible = true;
+                nyAntalPizzaUpDown.ValueChanged += new EventHandler(Fanta15LUpDown_ValueChange);
+                KurvListView.Controls.Add(nyAntalPizzaUpDown);
                 yAmountCalculator += 30;
                 totalpris += 30;
                 TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
@@ -672,9 +706,11 @@ namespace Uge51_miniprojekt
             RabatDrikkevare += 1;
             if (RabatPizza >= 2 && RabatDrikkevare >= 2 && Rabat == false)
             {
+                BestilButton.Visible = true;
                 string[] row = { "Rabat -30 kr." };
                 var ListViewItem = new ListViewItem(row);
                 KurvListView.Items.Add(ListViewItem);
+                totalpris -= 30;
                 Rabat = true;
                 TotalPriceLabel.Text = totalpris.ToString() + "kr.";
                 yAmountCalculator += 30;
@@ -710,13 +746,7 @@ namespace Uge51_miniprojekt
         //fjerner de "items" man har valgt fra listen i "Kurven"
         private void button1_Click(object sender, EventArgs e)
         {
-
-            totalpris = 0;
-            RabatDrikkevare = 0;
-            RabatPizza = 0;
-            Rabat = false;
-            yAmountCalculator = 5;
-            TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
+            BestilButton.Visible = false;
             SKPSpcialALMCheckBox.Checked = false;
             SKPSpecialFAMCheckBox.Checked = false;
             OmadsFavALMCheckBox.Checked = false;
@@ -729,6 +759,12 @@ namespace Uge51_miniprojekt
             CocaCola1LCheckBox.Checked = false;
             Fanta05LCheckBox.Checked = false;
             Fanta1LCheckBox.Checked = false;
+            totalpris = 0;
+            RabatDrikkevare = 0;
+            RabatPizza = 0;
+            Rabat = false;
+            yAmountCalculator = 5;
+            TotalPriceLabel.Text = totalpris.ToString() + "Kr.";
             KurvListView.Items.Clear();
             KurvListView.Controls.Clear();
 
@@ -736,18 +772,116 @@ namespace Uge51_miniprojekt
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-        }
-
-        private void listView1_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-
+            String[] TIlbehør = { EgenPizzaList.SelectedItem.ToString() };
+            var ListViewItem = new ListViewItem(TIlbehør);
+            KurvListView.Items.Add(ListViewItem);
+            totalpris += 5;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
         }
         void NewButton_Click(object sender, EventArgs e)
         {
             EgenPizzaList.BringToFront();
             EgenPizzaList.Visible = true;
         }
+        private void BestilButton_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Tak for Din Bestilling");
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void SkpSpecialAlm_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 65 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void SkpSpecialFam_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 120 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void OmadsFavAlmUpDown_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 60 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void OmadsFavFamUpDown_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 110 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void ViktorsFavAlmUpDown_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 50 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void ViktorsFavFamUpDown_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 100 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void EgenPizzaAlm_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 30 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void EgenPizzaFam_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 80 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void Cola05LUpDown_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 18 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void Cola15LUpDown_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 30 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void Fanta05LUpDown_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 18 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
+        //Updatere Prisen på Varer efter NumericUpDown_ValueChange
+        public void Fanta15LUpDown_ValueChange(object sender, EventArgs e)
+        {
+            int price = 0;
+            price++;
+            totalpris += 30 * price;
+            TotalPriceLabel.Text = totalpris.ToString() + "kr.";
+        }
     }
 }
-        

@@ -442,6 +442,7 @@ namespace Uge51_miniprojekt
             this.BestilButton.TabIndex = 0;
             this.BestilButton.Text = "Bestil";
             this.BestilButton.UseVisualStyleBackColor = true;
+            this.BestilButton.Click += new System.EventHandler(this.BestilButton_Click);
             // 
             // EgenPizzaList
             // 
